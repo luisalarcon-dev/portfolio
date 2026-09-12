@@ -1,48 +1,36 @@
 # Luis Alarcón Dev Software — Portfolio
 
-Portafolio de **Luis Fernando Alarcón Cáceres**, Full Stack Developer en Bolivia.
-React + TypeScript + Vite + Tailwind CSS. Diseño responsive oscuro con tipografías locales, iconos Lucide y animaciones ligeras que respetan la preferencia de movimiento reducido.
+Portafolio bilingüe de **Luis Fernando Alarcón Cáceres**, Full Stack Developer en Bolivia.
 
-## 1. Verlo en tu computadora
+**Sitio:** https://luisalarcon-dev.github.io/portfolio/
 
-Requisito: Node.js 24 LTS y Git.
+React + TypeScript + Vite + Tailwind CSS. Diseño oscuro, arte original optimizado, animaciones con control de pausa y un explorador de tecnologías con logotipos y navegación por teclado.
 
-Abre una terminal dentro de esta carpeta `portfolio` y ejecuta:
+## Verlo localmente
+
+Instala Node.js 24 LTS y Git. Dentro de esta carpeta ejecuta:
 
 ```sh
 npm install
 npm run dev
 ```
 
-Abre **http://localhost:5173/portfolio/** (si el puerto está ocupado, usa el enlace que aparece en la terminal). Para detenerlo, presiona Ctrl+C.
+Abre http://localhost:5173/portfolio/ (o el puerto que indique la terminal).
 
-## 2. Conectarlo a GitHub y subirlo
+## GitHub y publicación
 
-En tu cuenta **luisalarcon-dev**, crea un repositorio público llamado **portfolio**. Déjalo vacío: sin README, licencia ni .gitignore. Luego, desde esta carpeta:
+El repositorio ya está conectado a https://github.com/luisalarcon-dev/portfolio y GitHub Pages está activado con **GitHub Actions**. No necesitas volver a configurarlo.
+
+Para descargarlo en otra computadora:
 
 ```sh
-git init -b main
-git add .
-git commit -m "Create professional portfolio"
-git remote add origin https://github.com/luisalarcon-dev/portfolio.git
-git push -u origin main
+git clone https://github.com/luisalarcon-dev/portfolio.git
+cd portfolio
+npm install
+npm run dev
 ```
 
-GitHub puede pedirte iniciar sesión. Si el repositorio ya existe y tiene archivos, no fuerces el push: primero hay que integrar su contenido.
-
-## 3. Activar GitHub Pages
-
-En el repositorio de GitHub:
-
-1. Abre **Settings → Pages**.
-2. En **Build and deployment → Source**, selecciona **GitHub Actions**.
-3. Abre **Actions → Deploy portfolio to GitHub Pages → Run workflow → Run workflow**.
-4. Espera a que termine con una marca verde.
-
-Tu dirección será **https://luisalarcon-dev.github.io/portfolio/**.
-El sitio no queda publicado por descargar este proyecto; es necesario completar estos pasos.
-
-Cada nuevo push a `main` volverá a publicarlo automáticamente:
+Para publicar futuros cambios desde esta carpeta:
 
 ```sh
 git add .
@@ -50,7 +38,9 @@ git commit -m "Update portfolio"
 git push
 ```
 
-## Verificaciones y producción
+Cada push a `main` ejecuta las comprobaciones y publica automáticamente. Puedes ver el resultado en la pestaña **Actions** del repositorio. La configuración de Pages se encuentra en **Settings → Pages → Source: GitHub Actions**.
+
+## Verificar y compilar
 
 ```sh
 npm run lint
@@ -59,43 +49,29 @@ npm run build
 npm run preview
 ```
 
-`dist/` contiene el sitio compilado. El workflow instala desde `package-lock.json`, ejecuta las verificaciones y publica únicamente `dist/`.
+El sitio final se genera en `dist/`. Vite usa `base: '/portfolio/'`, correspondiente a la URL pública. No requiere secretos, archivos .env, backend ni servicios de pago.
 
-La configuración `base: '/portfolio/'` en `vite.config.ts` corresponde al repositorio solicitado. Las fuentes se alojan con el sitio; no se necesitan claves, variables de entorno, backend ni servicios de pago.
+## Idiomas y contacto
 
-## Estructura
+- El idioma inicial sigue al navegador: español o inglés. El selector **ES / EN** permite cambiarlo y recuerda la elección en ese navegador.
+- Puedes compartir una versión concreta con `?lang=es` o `?lang=en`.
+- WhatsApp y llamadas están configurados al número autorizado **+591 67671435 (Bolivia, Entel)**.
+- Email: luisfernando.alarcon.dev@gmail.com.
+
+## Estructura y contenido
 
 - `src/App.tsx`: portada y estructura principal.
-- `src/components/`: navegación, secciones y tarjetas reutilizables.
-- `src/data/portfolio.ts`: contacto, proyectos, tecnologías y usos de IA.
-- `src/index.css`: identidad, tipografía, portada y estilos generales.
-- `src/sections.css`: secciones y ajustes responsive.
-- `public/favicon.svg`: monograma LA.
-- `.github/workflows/deploy.yml`: publicación automática.
+- `src/components/`: navegación, animaciones, proyectos, servicios y explorador de tecnologías.
+- `src/data/portfolio.ts`: proyectos, tecnologías y datos de contacto.
+- `src/data/spanish.ts`: traducciones de la interfaz.
+- `src/LanguageProvider.tsx` y `src/i18n.ts`: selección y persistencia del idioma.
+- `src/index.css`, `src/sections.css`, `src/enhancements.css`: diseño y adaptación a pantallas.
+- `public/images/`: arte original en WebP, generado para este portafolio.
+- `public/icons/`: selección de logotipos Devicon; atribución en `THIRD_PARTY_NOTICES.md`.
+- `.github/workflows/deploy.yml`: comprobaciones y publicación.
 
-## Editar tu contenido
-
-En `src/data/portfolio.ts`:
-
-- Añade enlaces reales a `repoUrl` y `demoUrl` de Dental Clinic Website. Vacíos, se muestra un texto informativo y no un botón roto.
-- EncuentraPro aparece como **Private / In Development**. Su código no se incluye.
-- Para WhatsApp, añade a `profile.whatsapp` el número profesional autorizado para publicar, con código de país y solo dígitos. Mientras esté vacío, la interfaz reserva su lugar en el grupo de contacto sin mostrar un enlace.
-- Actualiza tecnologías y descripciones conforme evolucione tu trabajo.
-
-Las vistas de proyectos son composiciones ilustrativas creadas para este portafolio; no son capturas de productos terminados. Dental Clinic Website es un concepto independiente, no un cliente real. Este repositorio contiene el portafolio, no el código de esos proyectos.
+Dental Clinic Website es un concepto independiente, no un cliente real. Añade sus enlaces reales a `repoUrl` y `demoUrl` cuando estén disponibles. EncuentraPro está marcado como privado y en desarrollo. Las vistas de ambos proyectos son composiciones conceptuales, no capturas de productos terminados. Este repositorio contiene el portafolio, no el código de esos proyectos.
 
 ## Accesibilidad y privacidad
 
-Navegación semántica, enlace para saltar al contenido, foco visible, menú móvil con cierre por Escape y enlaces externos con protección de contexto. No contiene formularios que simulen envíos, rastreadores, métricas inventadas ni testimonios. No se han añadido fotos o marcas de terceros; el identificador visual es un monograma tipográfico LA.
-
-## Documentación técnica oficial
-
-- [Vite: despliegue en GitHub Pages](https://vite.dev/guide/static-deploy#github-pages)
-- [Tailwind CSS con Vite](https://tailwindcss.com/docs/installation/using-vite)
-- [GitHub: workflows para Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
-
-## Diseño y movimiento
-
-La segunda versión incorpora una portada con arte original, parallax con el cursor y el desplazamiento, entradas escalonadas al aparecer las secciones, indicador de lectura, navegación activa y tarjetas con inclinación suave. Los proyectos tienen detalles desplegables. El botón **Motion on / Motion off** permite pausar los efectos; también se respeta la preferencia de movimiento reducido del sistema.
-
-La imagen principal está en `public/images/hero-ribbon.webp` (aproximadamente 100 KB). Se generó con la herramienta integrada de imágenes usando una dirección de cinta abstracta de cromo y vidrio, iluminación cyan/cobalto/violeta y fondo oscuro sin texto ni logotipos. No requiere un motor 3D ni servicios externos.
+Navegación semántica, foco visible, menú móvil con cierre por Escape, tabs con flechas/Home/End, idioma del documento actualizado y control de movimiento. Se respeta la preferencia de movimiento reducido del sistema. Fuentes e imágenes alojadas con el sitio. Sin rastreadores, testimonios ficticios ni formularios que simulen envíos.

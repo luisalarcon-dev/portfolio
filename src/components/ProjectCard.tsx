@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n";
 import {
   ArrowUpRight,
   LockKeyhole,
@@ -12,6 +13,7 @@ import type { PointerEvent } from "react";
 import type { Project } from "../data/portfolio";
 import { Tags } from "./SectionHeading";
 export function ProjectCard({ project }: { project: Project }) {
+  const { t } = useLanguage();
   const dental = project.kind === "dental";
   const tilt = (event: PointerEvent<HTMLDivElement>) => {
     if (
@@ -41,91 +43,102 @@ export function ProjectCard({ project }: { project: Project }) {
         }}
       >
         <div className="project-visual-top">
-          <span>{dental ? "INTERFACE STUDY" : "SYSTEM ARCHITECTURE"}</span>
-          <span>0{dental ? "1" : "2"} / SELECTED WORK</span>
+          <span>
+            {dental ? t("INTERFACE STUDY") : t("SYSTEM ARCHITECTURE")}
+          </span>
+          <span>
+            0{dental ? "1" : "2"}
+            {t("/ SELECTED WORK")}
+          </span>
         </div>
         {dental ? (
           <div
             className="dental-preview"
-            aria-label="Illustrative interface concept, not a live project screenshot"
+            aria-label={t(
+              "Illustrative interface concept, not a live project screenshot",
+            )}
           >
             <div className="preview-browser">
               <i />
               <i />
               <i />
-              <span>Dental Clinic / Website concept</span>
+              <span>{t("Dental Clinic / Website concept")}</span>
             </div>
             <div className="dental-nav">
               <span>
                 <Plus size={20} />
-                DENTAL / CARE
+                {t("DENTAL / CARE")}
               </span>
-              <span>CARE WITH CLARITY</span>
+              <span>{t("CARE WITH CLARITY")}</span>
             </div>
             <div className="dental-content">
               <span className="dental-kicker">
-                A BETTER KIND OF DENTAL EXPERIENCE
+                {t("A BETTER KIND OF DENTAL EXPERIENCE")}
               </span>
               <strong>
-                A brighter smile.
+                {t("A brighter smile.")}
                 <br />
-                <em>A healthier you.</em>
+                <em>{t("A healthier you.")}</em>
               </strong>
-              <p>A welcoming digital experience, centered on the patient.</p>
+              <p>
+                {t("A welcoming digital experience, centered on the patient.")}
+              </p>
               <span className="dental-bottom">
-                Discover our approach <ArrowUpRight size={16} />
+                {t("Discover our approach")}
+                <ArrowUpRight size={16} />
               </span>
             </div>
             <div className="dental-features">
-              <span>01 / Clear information</span>
-              <span>02 / Thoughtful design</span>
-              <span>03 / Easy navigation</span>
+              <span>{t("01 / Clear information")}</span>
+              <span>{t("02 / Thoughtful design")}</span>
+              <span>{t("03 / Easy navigation")}</span>
             </div>
           </div>
         ) : (
           <div
             className="market-preview"
-            aria-label="EncuentraPro conceptual application architecture"
+            aria-label={t("EncuentraPro conceptual application architecture")}
           >
             <div className="market-heading">
               <span className="market-logo">
-                ep<span>.</span>
+                {t("ep")}
+                <span>.</span>
               </span>
               <div>
-                <strong>EncuentraPro</strong>
-                <span>PEOPLE. SKILLS. POSSIBILITIES.</span>
+                <strong>{t("EncuentraPro")}</strong>
+                <span>{t("PEOPLE. SKILLS. POSSIBILITIES.")}</span>
               </div>
             </div>
             <div className="architecture">
               <div>
                 <Layers size={23} />
-                <strong>Experience</strong>
-                <span>React · TypeScript</span>
+                <strong>{t("Experience")}</strong>
+                <span>{t("React \u00B7 TypeScript")}</span>
               </div>
               <i />
               <div>
                 <Braces size={23} />
-                <strong>Application</strong>
-                <span>NestJS · REST API</span>
+                <strong>{t("Application")}</strong>
+                <span>{t("NestJS \u00B7 REST API")}</span>
               </div>
               <i />
               <div>
                 <Database size={23} />
-                <strong>Foundation</strong>
-                <span>PostgreSQL · Prisma</span>
+                <strong>{t("Foundation")}</strong>
+                <span>{t("PostgreSQL \u00B7 Prisma")}</span>
               </div>
             </div>
             <div className="market-foot">
               <LockKeyhole size={13} />
-              <span>Private project</span>
-              <span className="market-progress">In development</span>
+              <span>{t("Private project")}</span>
+              <span className="market-progress">{t("In development")}</span>
             </div>
           </div>
         )}
         <span className="visual-caption">
           {dental
-            ? "Conceptual interface direction"
-            : "Conceptual architecture · Not a live product screenshot"}
+            ? t("Conceptual interface direction")
+            : t("Conceptual architecture \u00B7 Not a live product screenshot")}
         </span>
       </div>
       <div className="project-body">
@@ -133,48 +146,59 @@ export function ProjectCard({ project }: { project: Project }) {
           0{dental ? "1" : "2"}
         </span>
         <div className="project-meta">
-          <span className="eyebrow">{project.category}</span>
+          <span className="eyebrow">{t(project.category)}</span>
           <span className={"project-status " + (dental ? "" : "private")}>
             {dental ? <Sparkles size={12} /> : <LockKeyhole size={12} />}{" "}
-            {project.status}
+            {t(project.status)}
           </span>
         </div>
         <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        <p>{t(project.description)}</p>
         <Tags items={project.stack} />
         <details className="project-details">
           <summary>
-            Project overview <ChevronDown size={17} />
+            {t("Project overview")}
+            <ChevronDown size={17} />
           </summary>
           <div>
             <p>
               {dental
-                ? "An independent healthcare website concept. The visual above explores an interface direction; it is not evidence of a finished client delivery."
-                : "An independent full stack marketplace currently in development. Source code is private, and no public demo is available yet."}
+                ? t(
+                    "An independent healthcare website concept. The visual above explores an interface direction; it is not evidence of a finished client delivery.",
+                  )
+                : t(
+                    "An independent full stack marketplace currently in development. Source code is private, and no public demo is available yet.",
+                  )}
             </p>
             <p>
               {dental
-                ? "Focus: service information, visual hierarchy and a responsive web experience."
-                : "Technical scope: React interface, NestJS backend, PostgreSQL data layer, Prisma and Docker."}
+                ? t(
+                    "Focus: service information, visual hierarchy and a responsive web experience.",
+                  )
+                : t(
+                    "Technical scope: React interface, NestJS backend, PostgreSQL data layer, Prisma and Docker.",
+                  )}
             </p>
           </div>
         </details>
         <div className="project-links">
           {project.demoUrl && (
             <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-              Live demo <ArrowUpRight size={16} />
+              {t("Live demo")}
+              <ArrowUpRight size={16} />
             </a>
           )}
           {project.repoUrl && (
             <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-              Repository <ArrowUpRight size={16} />
+              {t("Repository")}
+              <ArrowUpRight size={16} />
             </a>
           )}
           {!project.repoUrl && !project.demoUrl && (
             <span>
               {dental
-                ? "Demo & repository links coming soon"
-                : "Private source code · Development in progress"}
+                ? t("Demo & repository links coming soon")
+                : t("Private source code \u00B7 Development in progress")}
             </span>
           )}
         </div>

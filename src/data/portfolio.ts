@@ -2,7 +2,7 @@ export const profile = {
   email: "luisfernando.alarcon.dev@gmail.com",
   github: "https://github.com/luisalarcon-dev",
   // International digits only, e.g. country code + professional number. Empty = hidden.
-  whatsapp: "",
+  whatsapp: "59167671435",
 };
 export type Project = {
   title: string;

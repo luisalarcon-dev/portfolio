@@ -1,59 +1,18 @@
+import { Services } from "./Services";
+import { TechStack } from "./TechStack";
+import { useLanguage } from "../i18n";
 import {
   ArrowUpRight,
-  Globe2,
-  PanelsTopLeft,
-  Workflow,
-  ShoppingBag,
-  Smartphone,
-  Database,
-  Wrench,
   Sparkles,
   CodeXml,
   Mail,
   MapPin,
   MessageCircle,
+  Phone,
 } from "lucide-react";
-import { profile, projects, stack, aiTasks } from "../data/portfolio";
-import { SectionHeading, Tags } from "./SectionHeading";
+import { profile, projects, aiTasks } from "../data/portfolio";
+import { SectionHeading } from "./SectionHeading";
 import { ProjectCard } from "./ProjectCard";
-const services = [
-  {
-    name: "Websites",
-    text: "A clear digital presence, built around your business and the people you serve.",
-    icon: Globe2,
-    className: "service-featured",
-  },
-  {
-    name: "Landing Pages",
-    text: "Focused pages that turn an offer into a clear next step.",
-    icon: PanelsTopLeft,
-  },
-  {
-    name: "Full Stack Systems",
-    text: "Connected interfaces, business logic and data for your workflows.",
-    icon: Workflow,
-  },
-  {
-    name: "E-commerce",
-    text: "Online stores designed for straightforward product discovery and shopping.",
-    icon: ShoppingBag,
-  },
-  {
-    name: "Mobile Apps",
-    text: "Mobile experiences built with React Native and Expo.",
-    icon: Smartphone,
-  },
-  {
-    name: "APIs / Databases",
-    text: "Structured data and APIs that connect your product.",
-    icon: Database,
-  },
-  {
-    name: "Maintenance",
-    text: "Bug fixes, updates and improvements that keep your software moving.",
-    icon: Wrench,
-  },
-];
 const process = [
   ["Discover", "Understand the problem, users and requirements."],
   ["Design", "Shape the structure, interface and technical approach."],
@@ -62,13 +21,14 @@ const process = [
   ["Deploy", "Launch the product and document the handoff."],
 ];
 export function PortfolioSections() {
+  const { t } = useLanguage();
   return (
     <>
       <section id="work" className="container section">
         <SectionHeading
           number="01"
           label="SELECTED WORK"
-          title="Built with purpose."
+          title={t("Built with purpose.")}
           description="A closer look at the products I'm shaping — from focused web experiences to connected systems."
         />
         <div className="projects-grid">
@@ -82,56 +42,31 @@ export function PortfolioSections() {
           <SectionHeading
             number="02"
             label="WHAT I DO"
-            title="Your next idea. Let's build it."
+            title={t("Your next idea. Let's build it.")}
             description="From a first online presence to the software behind your operations."
           />
-          <div className="services-grid">
-            {services.map(({ name, text, icon: Icon, className }) => (
-              <article
-                key={name}
-                className={"service-card " + (className ?? "")}
-              >
-                <Icon size={24} strokeWidth={1.4} />
-                <h3>{name}</h3>
-                <p>{text}</p>
-                {className && (
-                  <a href="#contact">
-                    Let's discuss your website <ArrowUpRight size={18} />
-                  </a>
-                )}
-              </article>
-            ))}
-          </div>
+          <Services />
         </div>
       </section>
       <section id="stack" className="container section">
         <SectionHeading
           number="03"
           label="TECHNOLOGY STACK"
-          title="The tools behind the build."
+          title={t("The tools behind the build.")}
           description="A connected toolkit across the interface, server, database and mobile experience."
         />
-        <div className="stack-grid">
-          {stack.map((group, i) => (
-            <article className="stack-group" key={group.name}>
-              <span className="stack-number">0{i + 1}</span>
-              <div>
-                <h3>{group.name}</h3>
-                <Tags items={group.items} />
-              </div>
-            </article>
-          ))}
-        </div>
+        <TechStack />
         <div className="ai-panel">
           <div className="ai-copy">
             <span className="ai-icon">
               <Sparkles size={23} />
             </span>
-            <p className="eyebrow">HUMAN DIRECTION. AI SUPPORT.</p>
-            <h3>AI-Assisted Development</h3>
+            <p className="eyebrow">{t("HUMAN DIRECTION. AI SUPPORT.")}</p>
+            <h3>{t("AI-Assisted Development")}</h3>
             <p>
-              I use AI coding agents to support the development process, with
-              human judgment guiding the decisions and reviewing the output.
+              {t(
+                "I use AI coding agents to support the development process, with human judgment guiding the decisions and reviewing the output.",
+              )}
             </p>
             <div className="ai-tools">
               {["ChatGPT", "Codex", "Cursor", "Antigravity"].map((tool) => (
@@ -143,7 +78,7 @@ export function PortfolioSections() {
             {aiTasks.map((task, i) => (
               <div key={task}>
                 <span>{String(i + 1).padStart(2, "0")}</span>
-                {task}
+                {t(task)}
               </div>
             ))}
           </div>
@@ -152,31 +87,33 @@ export function PortfolioSections() {
       <section id="about" className="section section-surface">
         <div className="container about-grid">
           <div>
-            <p className="eyebrow text-cyan">04 / BEHIND THE CODE</p>
+            <p className="eyebrow text-cyan">{t("04 / BEHIND THE CODE")}</p>
             <h2>
-              A builder's mindset.
+              {t("A builder's mindset.")}
               <br />
-              <span className="muted">A human approach.</span>
+              <span className="muted">{t("A human approach.")}</span>
             </h2>
             <span className="location">
               <MapPin size={16} />
-              Bolivia
+              {t("Bolivia")}
             </span>
           </div>
           <div className="about-copy">
             <p className="about-lead">
-              I'm Luis Fernando Alarcón Cáceres, a Full Stack Developer building
-              under <span>Luis Alarcón Dev Software.</span>
+              {t(
+                "I'm Luis Fernando Alarc\u00F3n C\u00E1ceres, a Full Stack Developer building under",
+              )}{" "}
+              <span>{t("Luis Alarc\u00F3n Dev Software.")}</span>
             </p>
             <p>
-              I turn ideas into websites, software and mobile experiences. My
-              approach connects clear interfaces with thoughtful technical
-              foundations, keeping the purpose of the product in view.
+              {t(
+                "I turn ideas into websites, software and mobile experiences. My approach connects clear interfaces with thoughtful technical foundations, keeping the purpose of the product in view.",
+              )}
             </p>
             <p>
-              I value readable code, direct communication and practical
-              solutions. AI supports my workflow; understanding the problem and
-              making the decisions remain my responsibility.
+              {t(
+                "I value readable code, direct communication and practical solutions. AI supports my workflow; understanding the problem and making the decisions remain my responsibility.",
+              )}
             </p>
             <a
               className="text-link"
@@ -185,7 +122,8 @@ export function PortfolioSections() {
               rel="noopener noreferrer"
             >
               <CodeXml size={17} />
-              Explore my GitHub <ArrowUpRight size={17} />
+              {t("Explore my GitHub")}
+              <ArrowUpRight size={17} />
             </a>
           </div>
         </div>
@@ -194,7 +132,7 @@ export function PortfolioSections() {
         <SectionHeading
           number="05"
           label="HOW I WORK"
-          title="A clear path from idea to launch."
+          title={t("A clear path from idea to launch.")}
         />
         <ol className="process-grid">
           {process.map(([name, text], i) => (
@@ -207,29 +145,52 @@ export function PortfolioSections() {
                   </span>
                 )}
               </div>
-              <h3>{name}</h3>
-              <p>{text}</p>
+              <h3>{t(name)}</h3>
+              <p>{t(text)}</p>
             </li>
           ))}
         </ol>
       </section>
       <section id="contact" className="container contact-section">
         <div className="contact-top">
-          <p className="eyebrow text-cyan">06 / LET'S MAKE IT HAPPEN</p>
+          <p className="eyebrow text-cyan">{t("06 / LET'S MAKE IT HAPPEN")}</p>
           <span className="availability">
             <i />
-            Open to freelance projects
+            {t("Open to freelance projects")}
           </span>
         </div>
         <h2>
-          Have an idea?
+          {t("Have an idea?")}
           <br />
-          <span className="gradient-text">Let's give it a future.</span>
+          <span className="gradient-text">{t("Let's give it a future.")}</span>
         </h2>
         <p className="contact-description">
-          Tell me what you're building, what you need and where you'd like to
-          go.
+          {t(
+            "Tell me what you're building, what you need and where you'd like to go.",
+          )}
         </p>
+        <div className="direct-contact">
+          <a
+            className="whatsapp-contact"
+            href={"https://wa.me/" + profile.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={28} />
+            <span>
+              <strong>{t("Chat on WhatsApp")}</strong>
+              <span>+591 67671435 · {t("Bolivia · Entel")}</span>
+            </span>
+            <ArrowUpRight size={25} />
+          </a>
+          <a className="call-contact" href={"tel:+" + profile.whatsapp}>
+            <Phone size={23} />
+            <span>
+              {t("Call me")}
+              <strong>+591 67671435</strong>
+            </span>
+          </a>
+        </div>
         <div className="contact-links">
           <a className="email-link" href={"mailto:" + profile.email}>
             <Mail size={22} />
@@ -243,19 +204,9 @@ export function PortfolioSections() {
             rel="noopener noreferrer"
           >
             <CodeXml size={20} />
-            GitHub <ArrowUpRight size={19} />
+            {t("GitHub")}
+            <ArrowUpRight size={19} />
           </a>
-          {profile.whatsapp && (
-            <a
-              className="github-link"
-              href={"https://wa.me/" + profile.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle size={20} />
-              WhatsApp <ArrowUpRight size={19} />
-            </a>
-          )}
         </div>
       </section>
     </>

@@ -1,3 +1,4 @@
+import { useLanguage } from "../i18n";
 type Props = {
   number: string;
   label: string;
@@ -5,15 +6,16 @@ type Props = {
   description?: string;
 };
 export function SectionHeading({ number, label, title, description }: Props) {
+  const { t } = useLanguage();
   return (
     <div className="section-heading">
       <div>
         <p className="eyebrow text-cyan">
-          {number} / {label}
+          {number} / {t(label)}
         </p>
-        <h2>{title}</h2>
+        <h2>{t(title)}</h2>
       </div>
-      {description && <p className="section-intro">{description}</p>}
+      {description && <p className="section-intro">{t(description)}</p>}
     </div>
   );
 }
